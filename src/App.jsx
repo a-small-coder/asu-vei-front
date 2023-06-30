@@ -4,20 +4,22 @@ import UploadDatabase from './components/Forms/UploadDatabase/UploadDatabase'
 import theme from './theme'
 import { useState } from 'react'
 import apiClient from './axios'
+import sendMessage from './api/sendMessage'
 
 
 function App() {
 
   const [isResponse, setIsResponse] = useState(false)
 
-  const saveBase = (isSuccess, formValue) => {
+  const saveBase = (data) => {
+    const {isSuccess, formValue} = data
 
     if (isSuccess) {
       setIsResponse(true)
       console.log(formValue)
+      sendMessage(formValue)
       apiClient.post('/upload/post', {formValue})
       .then( res => {
-        console.log(res)
         console.log(res.data)
         setIsResponse(false)
       })

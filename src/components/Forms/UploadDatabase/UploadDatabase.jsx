@@ -5,7 +5,6 @@ import FileUploader from "../../FileLoader/FileLoader"
 import { useEffect, useState } from "react"
 import { useFormik } from "formik"
 const UploadDatabase = (props) => {
-    console.log(props)
 
     const [ introFile, setIntroFile ] = useState([])
 
@@ -26,7 +25,7 @@ const UploadDatabase = (props) => {
             setLoadingForm(false)
         }
         
-    }, [setLoadingForm])
+    }, [loadingForm, setLoadingForm])
 
     const initialValues = {
         objectName: '',
@@ -39,8 +38,8 @@ const UploadDatabase = (props) => {
             intro: introFile[0].file,
             fileName: introFile[0].file.name
         }
-        // console.log(values)
-        props.formHandle({
+        console.log(values)
+        props.formHandler({
             isSuccess: true,    
             formValue: values
         })
